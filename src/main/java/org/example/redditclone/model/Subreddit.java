@@ -23,7 +23,7 @@ public class Subreddit {
     private String name;
     private String description;
     @OneToMany(fetch = LAZY)
-    private List<post> posts;
+    private List<Post> posts;
     private Instant createdDate;
     @ManyToOne(fetch = LAZY)
-    private User user;
+    private User user;}

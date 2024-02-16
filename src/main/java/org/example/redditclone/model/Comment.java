@@ -1,4 +1,4 @@
-package org.example.redditclone.model.;
+package org.example.redditclone.model;
 
 
 import jakarta.persistence.*;
