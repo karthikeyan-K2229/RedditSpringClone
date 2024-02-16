@@ -18,7 +18,6 @@ public enum VoteType {
                 .findAny()
                 .orElseThrow(() -> new SpringRedditException("Vote not found"));
     }
-
     public Integer getDirection() {
         return direction;
     }
