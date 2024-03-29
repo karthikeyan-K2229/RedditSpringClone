@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class PostService {
     @Autowired
     public PostRepository postRepository;
+
     public void savePost(PostRequest postRequest) {
-        postRepository.save(postRequest);
     }
 }
