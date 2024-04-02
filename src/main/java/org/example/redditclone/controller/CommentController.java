@@ -6,10 +6,9 @@ import org.example.redditclone.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/api/comments")
 @RestController
@@ -19,10 +18,16 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("/save/comments")
-    public ResponseEntity<CommentsDto> saveComment(@RequestBody CommentsDto commentsDto)
+    public ResponseEntity<Void> saveComment(@RequestBody CommentsDto commentsDto)
     {
-        CommentsDto comment=commentService.savecomments(commentsDto);
-       return new ResponseEntity<>(comment,HttpStatus.OK);
+        commentService.savecomment(commentsDto);
+     return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("params = postId")
+    public ResponseEntity<List<Comment>> getAllcomments(@RequestParam Long postId)
+    {
+        return commentService.getAllCommentByID(postId);
     }
 
 }

@@ -32,6 +32,7 @@ public class SubredditService {
 
     @Transactional
     public List<Subreddit> getAllSubreddit() {
+
         return (List<Subreddit>)subreddittRepository.findAll();
     }
 
