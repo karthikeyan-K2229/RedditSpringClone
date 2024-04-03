@@ -8,10 +8,10 @@ import org.example.redditclone.model.Post;
 import org.example.redditclone.model.User;
 import org.example.redditclone.repository.CommentRepository;
 import org.example.redditclone.repository.PostRepository;
+import org.example.redditclone.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +23,7 @@ public class CommentService {
     private CommentRepository commentRepository;
     private PostRepository postRepository;
     private User user;
+    private UserRepository userRepository;
 
     public void savecomment(CommentsDto commentsDto) {
         Post post=postRepository.findById(commentsDto.getPostId()).orElseThrow(() -> new PostNotFoundException(commentsDto.getPostId().toString()));
@@ -30,9 +31,20 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
-    public ResponseEntity<List<Comment>> getAllCommentByID(Long postId)
+    public List<Comment> getAllCommentByID(Long postId)
     {
         Post post=postRepository.findById(postId).orElseThrow(()-> new PostNotFoundException(postId.toString()));
-        return (List<Comment>)commentRepository.findAll(postId);
+        return  commentRepository.findByPost(post);
     }
+
+    public List<CommentsDto> getAllByUser(String userName) {
+        User user = userRepository.findByUsername(userName).orElseThrow(() -> new UsernameNotFoundException(userName));
+        return commentRepository.findAllByUser(user)
+                .stream()
+                .map(commentMapper::mapToDto)
+                .toList();
+    }
+
+
+
 }
