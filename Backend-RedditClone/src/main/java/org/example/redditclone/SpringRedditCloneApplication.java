@@ -1,9 +1,6 @@
 package org.example.redditclone;
 
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-
 
 @SpringBootApplication
 public class SpringRedditCloneApplication {
