@@ -5,7 +5,7 @@ import { ListSubredditComponent } from './list-subreddit/list-subreddit.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { SubredditserviceService } from './services/subredditservice.service';
 
@@ -22,11 +22,12 @@ import { SubredditserviceService } from './services/subredditservice.service';
     ReactiveFormsModule,
     HttpClientModule,
     NgModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,
   
 
     ],
-    providers: [],
+    providers: [HttpClientModule],
     bootstrap: [AppComponent]
     
   })

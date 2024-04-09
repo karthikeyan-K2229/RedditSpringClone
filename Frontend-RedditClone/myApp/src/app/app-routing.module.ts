@@ -4,7 +4,7 @@ import { CreateSubredditComponent } from './create-subreddit/create-subreddit.co
 
 
 export const routes: Routes = [
-  {path: '/', component: CreateSubredditComponent }
+  {path: '', component: CreateSubredditComponent }
   
 ];
 

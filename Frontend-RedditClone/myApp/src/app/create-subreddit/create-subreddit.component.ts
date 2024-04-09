@@ -33,8 +33,10 @@ export class CreateSubredditComponent {
   }
   createSubredditfunc()
   {
+    console.log(this.createSubreddit.value);
     this.subredditModel.name=this.createSubreddit.get('title').value;
     this.subredditModel.description=this.createSubreddit.get('description').value;
+    console.log(this.subredditModel);
     this.subredditservice.createsubreddit(this.subredditModel).subscribe(data => {
       this._router.navigateByUrl('/list-subreddits');
   }, (error) => {
