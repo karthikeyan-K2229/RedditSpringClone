@@ -24,8 +24,8 @@ export class CreateSubredditComponent {
     this.createSubreddit=new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required)
-    });
-
+    
+    });  
     this.subredditModel = {
       name: '',
       description: ''

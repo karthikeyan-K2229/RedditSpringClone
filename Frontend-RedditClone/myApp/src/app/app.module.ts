@@ -18,14 +18,12 @@ import { SubredditserviceService } from './services/subredditservice.service';
     ],
     imports: [
       BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgModule,
-    HttpClientModule,
-    RouterModule,
+      AppRoutingModule,
+      FormsModule,
+      HttpClientModule,
+      ReactiveFormsModule,
+      RouterModule
   
-
     ],
     providers: [HttpClientModule],
     bootstrap: [AppComponent]
