@@ -21,8 +21,8 @@ import { SubredditserviceService } from './services/subredditservice.service';
       AppRoutingModule,
       FormsModule,
       HttpClientModule,
-      ReactiveFormsModule,
-      RouterModule
+      RouterModule,
+      ReactiveFormsModule
   
     ],
     providers: [HttpClientModule],

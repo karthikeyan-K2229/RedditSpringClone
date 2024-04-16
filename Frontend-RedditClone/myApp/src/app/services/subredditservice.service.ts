@@ -9,11 +9,11 @@ import { HttpClient } from '@angular/common/http';
 
 export class SubredditserviceService {
   constructor(private http: HttpClient) { }
-  createsubreddit(subredditModel: Subreddit): Observable<Subreddit> {
-    console.log(this.createsubreddit)
-    return this.http.post<Subreddit>('http://localhost:8080/api/subreddit',
-      subredditModel);
+  createsubreddit(subredditModel: Subreddit): Observable<object> {
+    console.log(subredditModel);
+    return this.http.post<any>('http://localhost:8080/api/subreddit',subredditModel);
   }
+  
 
   
 }

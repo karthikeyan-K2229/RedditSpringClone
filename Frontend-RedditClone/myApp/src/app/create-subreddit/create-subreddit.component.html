@@ -2,18 +2,18 @@
 <div class="container">
     <div class="row">
       <div class="create-subreddit-container">
-        <form class="post-form" formGroup="createSubreddit" (ngSubmit)="createSubredditfunc()">
+        <form  [formGroup]="createSubreddit" (ngSubmit)="createSubredditfunc()">
           <div class="form-group">
             <div class="create-subreddit-heading">Create Subreddit</div>
             <hr />
-            <input type="text"  class="form-control" style="margin-top: 5px" formControlName="title" id="title"
+            <input type="text"  class="form-control" style="margin-top: 5px" formControlName="title" name="title"
               placeholder="Title">
-            <textarea type="text" formControlName="description" style="width: 100%; margin-top: 5px"
+            <textarea type="text" formControlName="description" name="description" style="width: 100%; margin-top: 5px"
               placeholder="Description"></textarea>
             <div>
               <div style="margin-top: 5px" class="float-right">
                 <button  class="btnDiscard">Discard</button>
-                <button class="btnCreateSubreddit" >Create</button>
+                <button class="btnCreateSubreddit" type="submit" >Create</button>
               </div>
             </div>
           </div>

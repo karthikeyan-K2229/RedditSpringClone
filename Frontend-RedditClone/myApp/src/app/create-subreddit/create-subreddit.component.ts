@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SubredditserviceService } from '../services/subredditservice.service';
 import { Subreddit } from '../models/subreddit';
@@ -8,36 +8,38 @@ import { Observable, throwError } from 'rxjs';
 @Component({
   selector: 'app-create-subreddit',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './create-subreddit.component.html',
   styleUrl: './create-subreddit.component.css'
 })
 
 export class CreateSubredditComponent {
   createSubreddit: any;
-  subredditModel: Subreddit;
+  //subredditModel: Subreddit;
   title = new FormControl('');
   description = new FormControl('');
  
-  constructor(private subredditservice: SubredditserviceService, private _router : Router  )
+  constructor(private subredditservice: SubredditserviceService,
+     private _router : Router,
+     private formBuilder: FormBuilder )
   {
-    this.createSubreddit=new FormGroup({
-      title: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required)
-    
-    });  
-    this.subredditModel = {
-      name: '',
-      description: ''
-    }
+    this.forms();
+  }
+  forms()
+  {
+    this.createSubreddit=this.formBuilder.group(
+      {
+        title:[''],
+        description:[''],
+        numberOfPosts:['30']
+      }
+    );
   }
   createSubredditfunc()
   {
     console.log(this.createSubreddit.value);
-    this.subredditModel.name=this.createSubreddit.get('title').value;
-    this.subredditModel.description=this.createSubreddit.get('description').value;
-    console.log(this.subredditModel);
-    this.subredditservice.createsubreddit(this.subredditModel).subscribe(data => {
+  
+    this.subredditservice.createsubreddit(this.createSubreddit.value).subscribe(data => {
       this._router.navigateByUrl('/list-subreddits');
   }, (error) => {
     throwError(error);
