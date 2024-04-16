@@ -13,7 +13,9 @@ export class SubredditserviceService {
     console.log(subredditModel);
     return this.http.post<any>('http://localhost:8080/api/subreddit',subredditModel);
   }
-  
+  getAllSubreddits(): Observable<Array<Subreddit>> {
+    return this.http.get<Array<Subreddit>>('http://localhost:8080/api/subreddit');
+  }
 
   
 }
